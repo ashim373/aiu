@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1></h1>
+    <nav>
+      <a href="index.html">View Blogs</a>
+      <a href="create.html">Create New Post</a>
+    </nav>
+  </header>
+
+  <main class="dashboard">
+    <!-- Quick Links -->
+    <section class="quick-links">
+      <h2>Quick Links</h2>
+      <nav>
+        <a href="create.html">+ New Post</a>
+        <a href="drafts.html">View Drafts</a>
+        <a href="categories.html">Manage Categories</a>
+      </nav>
+    </section>
+
+    <!-- Blog Statistics -->
+    <section class="stats">
+      <h2>Blog Statistics</h2>
+      <div class="stat-item">
+        <h3>Total Posts</h3>
+        <p id="total-posts">0</p>
+      </div>
+      <div class="stat-item">
+        <h3>Most Popular Post</h3>
+        <p id="popular-post">N/A</p>
+      </div>
+      <div class="stat-item">
+        <h3>Total Views</h3>
+        <p id="total-views">0</p>
+      </div>
+    </section>
+
+    <!-- Search and Filter -->
+    <section class="search-bar">
+      <h2>Search Blogs</h2>
+      <input type="text" id="search" placeholder="Search by title...">
+      <button id="search-btn">Search</button>
+    </section>
+
+    <!-- Draft Management -->
+    <section class="drafts">
+      <h2>Drafts</h2>
+      <ul id="draft-list">
+        <li>No drafts yet...</li>
+      </ul>
+    </section>
+
+    <!-- Recent Activities -->
+    <section class="activity-log">
+      <h2>Recent Activities</h2>
+      <ul id="activity-list">
+        <li>No activities yet...</li>
+      </ul>
+    </section>
+
+    <!-- To-Do List -->
+    <section class="todo">
+      <h2>Writer’s To-Do List</h2>
+      <ul id="todo-list">
+        <li>Research for AI blog <button class="mark-done">Done</button></li>
+      </ul>
+      <input type="text" id="todo-input" placeholder="Add a task">
+      <button id="add-todo">Add</button>
+    </section>
+
+    <!-- Profile and Settings -->
+    <section class="profile-settings">
+      <h2>Profile and Settings</h2>
+      <div class="profile">
+        <img src="default-avatar.png" alt="User Avatar" id="profile-pic">
+        <input type="file" id="upload-avatar">
+      </div>
+      <button id="toggle-theme">Switch to Dark Mode</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Dostel. All rights reserved.</p>
+  </footer>
+  <script src="dashboard.js"></script>
+</body>
+</html>

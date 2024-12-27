@@ -1,0 +1,237 @@
+/* General Styles */
+body {
+  font-family: 'Lora', serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  line-height: 1.8;
+  background: linear-gradient(135deg, #ffecd2, #fcb69f);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header */
+header {
+  background: linear-gradient(90deg, #4facfe, #00f2fe);
+  color: #fff;
+  padding: 20px 10px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+header h1 {
+  font-size: 2.8rem;
+  margin: 0;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+header nav {
+  margin-top: 10px;
+  text-align: center;
+}
+
+header nav a {
+  color: #fff;
+  margin: 0 15px;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+header nav a:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Footer */
+footer {
+  background: linear-gradient(90deg, #fdc830, #f37335);
+  color: #fff;
+  padding: 20px 10px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
+}
+
+footer p {
+  margin: 0;
+}
+
+footer a {
+  color: #ffefd5;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+footer a:hover {
+  color: #fff;
+}
+/* Blog Post Cards */
+main {
+  flex: 1;
+  width: 90%;
+  max-width: 1000px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.post {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 25px 30px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.post:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.post h2 {
+  color: #2c3e50;
+  font-size: 2rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.post p {
+  color: #555;
+  font-size: 1.1rem;
+  text-align: justify;
+  line-height: 1.8;
+  margin: 15px 0;
+}
+
+.post .timestamp {
+  font-size: 0.9rem;
+  color: #888;
+  text-align: right;
+}
+
+.post a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background: linear-gradient(90deg, #ff6a00, #ee0979);
+  border-radius: 20px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.post a:hover {
+  background: linear-gradient(90deg, #ee0979, #ff6a00);
+  transform: scale(1.1);
+}
+/* Dashboard Form */
+form {
+  background: #fff;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+form h2 {
+  color: #6a11cb;
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+form label {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 5px;
+  display: block;
+}
+
+form input,
+form textarea,
+form button {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px 15px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+form input:focus,
+form textarea:focus {
+  border-color: #6a11cb;
+  outline: none;
+  box-shadow: 0 0 5px rgba(106, 17, 203, 0.4);
+}
+
+form button {
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  color: #fff;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+form button:hover {
+  background: linear-gradient(to right, #0072ff, #00c6ff);
+  transform: scale(1.05);
+}
+.post-actions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-actions button {
+  background: #4facfe;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.post-actions button:hover {
+  background: #3385d6;
+}
+
+#cancel-edit {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#cancel-edit:hover {
+  background: #e63946;
+}
+
