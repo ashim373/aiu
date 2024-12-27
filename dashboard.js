@@ -1,120 +1,84 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Quick statistics
-    const totalPostsElement = document.getElementById('total-posts');
-    const popularPostElement = document.getElementById('popular-post');
-    const totalViewsElement = document.getElementById('total-views');
-  
-    const blogs = JSON.parse(localStorage.getItem('blogs')) || [];
-    const totalViews = blogs.reduce((acc, blog) => acc + (blog.views || 0), 0);
-    const popularPost = blogs.sort((a, b) => (b.views || 0) - (a.views || 0))[0];
-  
-    totalPostsElement.textContent = blogs.length;
-    totalViewsElement.textContent = totalViews;
-    popularPostElement.textContent = popularPost ? popularPost.title : 'N/A';
-  
-    // Search functionality
-    const searchInput = document.getElementById('search');
-    const searchButton = document.getElementById('search-btn');
-  
-    searchButton.addEventListener('click', () => {
-      const searchTerm = searchInput.value.trim().toLowerCase();
-      const filteredBlogs = blogs.filter(blog => blog.title.toLowerCase().includes(searchTerm));
-      alert(`Found ${filteredBlogs.length} result(s)`);
-    });
-  
-    // Draft management
-    const draftList = document.getElementById('draft-list');
-    const drafts = JSON.parse(localStorage.getItem('drafts')) || [];
-  
-    function renderDrafts() {
-      draftList.innerHTML = drafts.length
-        ? drafts
-            .map((draft, index) => `<li>${draft.title} <button onclick="editDraft(${index})">Edit</button> <button onclick="deleteDraft(${index})">Delete</button></li>`)
-            .join('')
-        : '<li>No drafts yet...</li>';
-    }
-  
-    renderDrafts();
-  
-    // Edit draft
-    window.editDraft = index => {
-      const draft = drafts[index];
-      localStorage.setItem('editingDraft', JSON.stringify(draft));
-      window.location.href = 'create.html'; // Redirect to editor
-    };
-  
-    // Delete draft
-    window.deleteDraft = index => {
-      drafts.splice(index, 1);
-      localStorage.setItem('drafts', JSON.stringify(drafts));
-      renderDrafts();
-    };
-  
-    // To-Do List
-    const todoList = document.getElementById('todo-list');
-    const todoInput = document.getElementById('todo-input');
-    const addTodoButton = document.getElementById('add-todo');
-    const todos = JSON.parse(localStorage.getItem('todos')) || [];
-  
-    function renderTodos() {
-      todoList.innerHTML = todos
-        .map((todo, index) => `<li>${todo.text} <button onclick="markDone(${index})">Done</button></li>`)
-        .join('');
-    }
-  
-    renderTodos();
-  
-    addTodoButton.addEventListener('click', () => {
-      const todoText = todoInput.value.trim();
-      if (!todoText) return alert('Please enter a task!');
-      todos.push({ text: todoText });
-      localStorage.setItem('todos', JSON.stringify(todos));
-      renderTodos();
-      todoInput.value = '';
-    });
-  
-    window.markDone = index => {
-      todos.splice(index, 1);
-      localStorage.setItem('todos', JSON.stringify(todos));
-      renderTodos();
-    };
-  
-    // Theme toggling
-    const toggleThemeButton = document.getElementById('toggle-theme');
-    toggleThemeButton.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      toggleThemeButton.textContent = document.body.classList.contains('dark-mode') ? 'Switch to Light Mode' : 'Switch to Dark Mode';
-    });
-  
-    // Upload profile picture
-    const profilePic = document.getElementById('profile-pic');
-    const uploadAvatar = document.getElementById('upload-avatar');
-  
-    uploadAvatar.addEventListener('change', event => {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = e => (profilePic.src = e.target.result);
-        reader.readAsDataURL(file);
-      }
-    });
-  
-    // Activity log
-    const activityList = document.getElementById('activity-list');
-    const activities = JSON.parse(localStorage.getItem('activities')) || [];
-  
-    function logActivity(activity) {
-      activities.push({ activity, timestamp: new Date().toISOString() });
-      localStorage.setItem('activities', JSON.stringify(activities));
-      renderActivities();
-    }
-  
-    function renderActivities() {
-      activityList.innerHTML = activities
-        .map(a => `<li>${a.activity} - ${new Date(a.timestamp).toLocaleString()}</li>`)
-        .join('');
-    }
-  
-    renderActivities();
+// Event listener for "Create New Post" button
+document.getElementById('create-post-btn').addEventListener('click', () => {
+    window.location.href = 'editor.html'; // Redirect to editor for creating new posts
   });
+  
+  // Event listener for "View Blogs" button
+  document.getElementById('view-blogs-btn').addEventListener('click', () => {
+    window.location.href = 'index.html'; // Redirect to the main blogs page
+  });
+  
+  // Event listener for "Edit Posts" button
+  document.getElementById('edit-posts-btn').addEventListener('click', () => {
+    displayPostList(); // Show the list of blogs for editing
+  });
+  
+  // Function to display the list of blog posts for editing
+  function displayPostList() {
+    const postListSection = document.getElementById('post-list');
+    const postsContainer = document.getElementById('posts-container');
+  
+    // Retrieve posts from localStorage
+    const posts = JSON.parse(localStorage.getItem('blogs')) || [];
+  
+    if (posts.length === 0) {
+      postsContainer.innerHTML = '<p>No posts available. Create one first!</p>';
+    } else {
+      postsContainer.innerHTML = ''; // Clear the list before adding posts
+      posts.forEach((post, index) => {
+        const li = document.createElement('li');
+        li.className = 'post-item';
+  
+        // Create title span
+        const titleSpan = document.createElement('span');
+        titleSpan.textContent = post.title;
+  
+        // Create Edit button
+        const editButton = document.createElement('button');
+        editButton.textContent = 'Edit';
+        editButton.className = 'edit-btn';
+        editButton.addEventListener('click', () => editPost(index));
+  
+        // Create Delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.className = 'delete-btn';
+        deleteButton.addEventListener('click', () => deletePost(index));
+  
+        // Append elements to list item
+        li.appendChild(titleSpan);
+        li.appendChild(editButton);
+        li.appendChild(deleteButton);
+  
+        // Append list item to the container
+        postsContainer.appendChild(li);
+      });
+    }
+  
+    postListSection.style.display = 'block'; // Show the blog list section
+  }
+  
+  // Function to edit a blog post
+  function editPost(index) {
+    const posts = JSON.parse(localStorage.getItem('blogs')) || [];
+    const postToEdit = posts[index];
+  
+    if (postToEdit) {
+      // Save post index to session storage for editing
+      sessionStorage.setItem('editPostIndex', index);
+      window.location.href = 'editor.html'; // Redirect to editor
+    }
+  }
+  
+  // Function to delete a blog post
+  function deletePost(index) {
+    const posts = JSON.parse(localStorage.getItem('blogs')) || [];
+    posts.splice(index, 1); // Remove the selected post
+  
+    // Save updated posts back to localStorage
+    localStorage.setItem('blogs', JSON.stringify(posts));
+  
+    // Refresh the post list
+    displayPostList();
+  }
   
