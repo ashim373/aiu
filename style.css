@@ -1,243 +1,77 @@
-/* General Styles */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
     margin: 0;
     padding: 0;
-    background-color: #f4f7fc;
-    color: #333;
   }
   
   header {
-    background-color: #4a90e2;
-    color: #fff;
-    padding: 1em;
+    background-color: #4CAF50;
+    color: white;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  header h1 {
-    font-size: 2rem;
-    margin: 0;
-  }
-  
-  nav a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.2rem;
-    margin: 0 1em;
+    padding: 10px 0;
   }
   
   main {
-    max-width: 1200px;
-    margin: 2em auto;
-    padding: 1em;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  main h2 {
-    font-size: 1.8rem;
-    margin-bottom: 1em;
+    padding: 20px;
     text-align: center;
   }
   
   button {
-    background-color: #4a90e2;
-    color: #fff;
+    background-color: #4CAF50;
+    color: white;
     border: none;
-    padding: 0.8em 1.2em;
-    font-size: 1rem;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
-    transition: all 0.3s;
   }
   
   button:hover {
-    background-color: #357ab7;
+    background-color: #45a049;
   }
   
-  section {
-    margin-bottom: 2em;
+  #post-list {
+    margin-top: 20px;
   }
   
-  footer {
-    background-color: #4a90e2;
-    color: #fff;
-    text-align: center;
-    padding: 1em 0;
-    font-size: 0.9rem;
+  #posts-container {
+    list-style: none;
+    padding: 0;
   }
   
-  /* Quick Stats Section */
-  .stats {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2em;
-  }
-  
-  .stats div {
-    flex: 1;
-    background-color: #f4f4f4;
-    padding: 1em;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin: 0 0.5em;
-  }
-  
-  .stats div h3 {
-    font-size: 1.4rem;
-    margin: 0.5em 0;
-    color: #333;
-  }
-  
-  .stats div span {
-    font-size: 1.8rem;
-    color: #4a90e2;
-  }
-  
-  /* Search Section */
-  .search {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2em;
-  }
-  
-  .search input {
-    flex: 1;
-    padding: 0.8em;
+  #posts-container li {
+    background: #fff;
+    padding: 10px;
+    margin: 10px 0;
     border: 1px solid #ddd;
     border-radius: 5px;
-    font-size: 1rem;
-    margin-right: 1em;
+    cursor: pointer;
   }
   
-  .search button {
-    padding: 0.8em 2em;
-  }
-  
-  /* Drafts Section */
-  #draft-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.8em;
+  #posts-container li:hover {
     background-color: #f9f9f9;
-    margin-bottom: 0.5em;
-    border: 1px solid #ddd;
-    border-radius: 5px;
   }
-  
-  #draft-list li button {
-    margin-left: 1em;
-    padding: 0.5em 1em;
-    font-size: 0.9rem;
-  }
-  
-  /* To-Do List Section */
-  #todo-list li {
+  .header-buttons {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.8em;
-    background-color: #f9f9f9;
-    margin-bottom: 0.5em;
-    border: 1px solid #ddd;
+    gap: 10px;
+  }
+  
+  .create-button,
+  .view-blogs-button {
+    background: #ffc107;
+    color: #121212;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
     border-radius: 5px;
+    cursor: pointer;
   }
   
-  #todo-input {
-    width: 80%;
-    padding: 0.8em;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-right: 1em;
-  }
-  
-  #add-todo {
-    padding: 0.8em 2em;
-  }
-  
-  /* Theme Toggling */
-  button#toggle-theme {
-    position: fixed;
-    bottom: 2em;
-    right: 2em;
-    padding: 0.8em 1.2em;
-    background-color: #222;
-    color: #fff;
-  }
-  
-  body.dark-mode {
-    background-color: #333;
-    color: #ddd;
-  }
-  
-  body.dark-mode header,
-  body.dark-mode footer {
-    background-color: #222;
-  }
-  
-  body.dark-mode button {
-    background-color: #444;
-    color: #ddd;
-  }
-  
-  /* Activity Log Section */
-  .activity-log {
-    background-color: #f4f4f4;
-    padding: 1em;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .activity-log li {
-    margin-bottom: 0.5em;
-    font-size: 0.9rem;
-    color: #555;
-  }
-  
-  /* Profile Picture Upload */
-  .profile {
-    text-align: center;
-    margin-bottom: 2em;
-  }
-  
-  .profile img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #ddd;
-  }
-  
-  .profile input {
-    margin-top: 1em;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .stats {
-      flex-direction: column;
-    }
-  
-    .stats div {
-      margin: 0.5em 0;
-    }
-  
-    .search {
-      flex-direction: column;
-    }
-  
-    .search input {
-      margin-bottom: 1em;
-    }
-  
-    #todo-input {
-      width: 100%;
-    }
+  .create-button:hover,
+  .view-blogs-button:hover {
+    background: #ffd54f;
   }
   
